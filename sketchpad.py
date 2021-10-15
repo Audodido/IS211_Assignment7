@@ -3,25 +3,21 @@ class Test:
 
     def __init__(self):
 
-        self.totals = [0, 0, 0]
+        self.totals = [0, 3, 0]
 
     def is_game_over(self):
-        for t in self.totals:
-            print(t)
-            if t >= 20:
+        for t in range(len(self.totals)):
+            print(self.totals[t])
+            if self.totals[t] >= 20:
                 return True
-            else:
-                return False
+        else:
+            return False
 
 t = Test()
 
+# t.is_game_over()
+
 while not t.is_game_over():
-    print(t.totals)
+    t.totals[2] += 3
     t.totals[0] += 1
-    t.totals[1] += 2
-
-print("done")
-
-
-
-
+    print(t.totals)
