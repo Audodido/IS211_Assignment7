@@ -67,11 +67,9 @@ class Game:
                     self.players[player].overall_total += self.players[player].turn_total
 
                     if not self.is_game_over():
-                        print("NOT OVER")
                         print(f'Ok then player {self.players[player].name}. Your game total is now {self.players[player].overall_total}. Next up!')
                         turn = False
                     else:
-                        print("OVER")
                         # self.players[player].overall_total += self.players[player].turn_total
                         print(f'Ok then player {self.players[player].name}. Your game total is now {self.players[player].overall_total}. That means...')
                         print(f'We have a winner: Player {self.players[player].name}') #refactor to method?            
@@ -90,17 +88,24 @@ class Game:
 
 if __name__ == "__main__":
 
-###############################################
-    ##**For extra credit**
-    #Ask: how many players? 
-    #for i in range(# of players input):
-    #   create an instance of player
 
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--players", help="Number of players", type=int, required=False)
+    args = parser.parse_args()
 
     print("Welcome to Pig")
+    players = []
     die = Die()
-    #players = input('How many players?: ')
-    players = [Player('one'), Player('two')]
+
+    if args.players != None:
+        for p in range(args.players):
+            p += 1
+            players.append(Player(str(p))) #create an instance of a Player() for each player specified by argument
+
+    else:
+        players = [Player('1'), Player('2')] #else default to two players
+    
+
     game = Game(die, players)
     game.play() 
 
