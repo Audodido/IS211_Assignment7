@@ -40,11 +40,11 @@ class Game:
         
         turn = True
 
-        while turn:
-            #player is shown their score
-            print(f'Player {self.players[player].name} — current game total: {self.players[player].overall_total}')
+        if not self.is_game_over():
+            while turn:
+                #player is shown their score
+                print(f'Player {self.players[player].name} — current game total: {self.players[player].overall_total}')
 
-            if not self.is_game_over():
                 #player gets roll_prompt - makes choice
                 choice = input(roll_prompt)
                 #if roll: roll 
@@ -81,9 +81,11 @@ class Game:
                         # turn = False
                         # print(f'We have a winner: Player {self.players[player].name}') #refactor to method?
                         # turn = False
-            else:            
-                # print(f'We have a winner: Player {self.players[player].name}') #refactor to method?
-                break
+        # else:
+        #     break
+            #print("Other")            
+            # print(f'We have a winner: Player {self.players[player].name}') #refactor to method?
+            
 
     def play(self):
 
