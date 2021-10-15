@@ -61,7 +61,7 @@ class Die:
 
 class Game:
     
-    def __init__(self, die, players=2):
+    def __init__(self, die, players):
         self.players = players
         self.die = die
 
@@ -74,14 +74,39 @@ class Game:
         
 
     def play(self):
-        # print(f'Okay player {players[0].name}, here we go.')
-        # roll_prompt = 'Enter "r" to roll. Enter "h" to hold.'
-        # print(roll_prompt)
+
+        roll_prompt = 'Enter "r" to roll. Enter "h" to hold.'
 
         while not self.is_game_over():
-            print(players[0].overall_total)
-            players[0].overall_total += 1
-     
+            for p in range(len(self.players)):
+                turn = True
+                self.players[p].turn_total = 0
+                print(f'Player {self.players[p].name}')
+
+                while turn:
+                    choice = input(roll_prompt)
+
+                    if choice == 'r':
+                        roll = die.roll()
+                        
+                        if roll != 1:
+                            self.players[p].turn_total += roll
+                            print(roll)
+                            print(f'Ok player {self.players[p].name}, you\'ve got {self.players[p].turn_total} on this turn so far.')
+                            print(f'And your game total is {self.players[p].overall_total}')
+                        else:
+                            print(f'Snake eye! player {self.players[p].name} loses their turn and receives no points')
+                            print(f'Your game total is now {self.players[p].overall_total}. Next up!')
+                            turn = False
+
+                    elif choice == 'h':
+                        self.players[p].overall_total += self.players[p].turn_total
+                        print(f'Ok then player {self.players[p].name}. Your game total is now {self.players[p].overall_total}. Next up!')
+                        turn = False
+                        # print(f'Ok player {self.players[p].name}, ')
+
+
+
 
 
 if __name__ == "__main__":

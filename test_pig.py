@@ -15,15 +15,19 @@ class GeneralTesting(unittest.TestCase):
         roll = test1.roll()
         self.assertIsInstance(roll, int)
 
-    def test_GamePlayerCount(self):
-        test1 = pig.Game()
-        test2 = pig.Game(5)
-        self.assertEqual(test1.players, 2)
-        self.assertEqual(test2.players, 5)
+    # def test_GamePlayerCount(self):
+    #     die = pig.Die()
+    #     players = (pig.Player('one'), pig.Player('two'))
+    #     test1 = pig.Game(die, players)
+    #     test2 = pig.Game(die, players)
+    #     self.assertEqual(len(test1.players), 2)
+    #     # self.assertEqual(test2.players, 5)
     
     def test_GamePlay(self):
-        test1 = pig.Game()
-        self.assertEqual(test1.play(), "one")
+        die = pig.Die()
+        players = [pig.Player('one'), pig.Player('two')]
+        test1 = pig.Game(die, players)
+        self.assertEqual(test1.play(), 'YES')
 
 
 if __name__ == '__main__':
