@@ -78,14 +78,7 @@ class Game:
                         turn = False
                         break
 
-                        # turn = False
-                        # print(f'We have a winner: Player {self.players[player].name}') #refactor to method?
-                        # turn = False
-        # else:
-        #     break
-            #print("Other")            
-            # print(f'We have a winner: Player {self.players[player].name}') #refactor to method?
-            
+  
 
     def play(self):
 
