@@ -83,8 +83,11 @@ class Game:
                         print(f'We have a winner: Player {self.players[player].name}') #refactor to method?            
                         turn = False
                         break
+                
+                else:
+                    print('Must enter an \'r\' or \'h\'. Try again')
 
-  
+
 
     def play(self):
 
