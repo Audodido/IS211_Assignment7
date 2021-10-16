@@ -2,7 +2,6 @@ import argparse
 import random
 
 class Player:
-
     def __init__(self, name):
         self.name = name
         self.overall_total = 0
@@ -10,7 +9,6 @@ class Player:
 
 
 class Die:
-    
     def __init__(self, sides=6):
         self.sides = sides 
 
@@ -20,10 +18,10 @@ class Die:
 
 
 class Game:
-    
     def __init__(self, die, players):
         self.players = players
         self.die = die
+
 
     def is_game_over(self):
         for player in self.players:
@@ -32,10 +30,18 @@ class Game:
         else:
             return False
 
-    
-        
 
-    def turn(self, player): #call this with player == p
+    def message(self, player):
+        self.player = player
+        # randomly varies message players sees after each roll
+        msg_bank = {1 : f'Ok player {self.players[player].name}, you\'ve got {self.players[player].turn_total} on this turn so far.',
+                    2 : f'Current turn-total for player {self.players[player].name}: {self.players[player].turn_total}',
+                    3 : f'player {self.players[player].name}\'s total this turn: {self.players[player].turn_total}'}
+
+        return msg_bank[random.randint(1,3)]
+
+
+    def turn(self, player): 
         self.player = player
         self.players[player].turn_total = 0 #reset player's turn_total to zero        
         roll_prompt = 'Enter "r" to roll. Enter "h" to hold.'
@@ -57,8 +63,7 @@ class Game:
                         self.players[player].turn_total += roll
                         if not self.is_game_over(): #check if anyone has 100
                             print(f'Die rolls: {roll}')
-                            print(f'Ok player {self.players[player].name}, you\'ve got {self.players[player].turn_total} on this turn so far.')
-                            # print(f'And your game total is {self.players[player].overall_total}')       
+                            print(self.message(player))
                         else: # else hold: becomes next players turn.
                             print(f'We have a winner: Player {self.players[player].name}') #refactor to method?
                     else:
