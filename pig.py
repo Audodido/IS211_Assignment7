@@ -31,6 +31,8 @@ class Game:
                 return True
         else:
             return False
+
+    
         
 
     def turn(self, player): #call this with player == p
@@ -42,6 +44,7 @@ class Game:
 
         if not self.is_game_over():
             while turn:
+                print('-' * 50)
                 #player is shown their score
                 print(f'Player {self.players[player].name} — current game total: {self.players[player].overall_total}')
 
@@ -53,9 +56,9 @@ class Game:
                     if roll != 1:
                         self.players[player].turn_total += roll
                         if not self.is_game_over(): #check if anyone has 100
-                            print(roll)
+                            print(f'Die rolls: {roll}')
                             print(f'Ok player {self.players[player].name}, you\'ve got {self.players[player].turn_total} on this turn so far.')
-                            print(f'And your game total is {self.players[player].overall_total}')       
+                            # print(f'And your game total is {self.players[player].overall_total}')       
                         else: # else hold: becomes next players turn.
                             print(f'We have a winner: Player {self.players[player].name}') #refactor to method?
                     else:
