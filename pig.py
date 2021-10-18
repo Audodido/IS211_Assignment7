@@ -33,7 +33,7 @@ class Game:
 
     def message(self, player):
         self.player = player
-        # randomly varies message players sees after each roll
+        # randomly varies message players see after each roll
         msg_bank = {1 : f'Ok player {self.players[player].name}, you\'ve got {self.players[player].turn_total} on this turn so far.',
                     2 : f'Current turn-total for player {self.players[player].name}: {self.players[player].turn_total}',
                     3 : f'player {self.players[player].name}\'s total this turn: {self.players[player].turn_total}'}
@@ -101,15 +101,15 @@ if __name__ == "__main__":
 
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("--players", help="Number of players", type=int, required=False)
+    parser.add_argument("--numPlayers", help="Number of players", type=int, required=False)
     args = parser.parse_args()
 
     print("Welcome to Pig")
     players = []
     die = Die()
 
-    if args.players != None:
-        for p in range(args.players):
+    if args.numPlayers != None:
+        for p in range(args.numPlayers):
             p += 1
             players.append(Player(str(p))) #create an instance of a Player() for each player specified by argument
 
