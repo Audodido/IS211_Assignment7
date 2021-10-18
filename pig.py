@@ -78,7 +78,6 @@ class Game:
                         print(f'Ok then player {self.players[player].name}. Your game total is now {self.players[player].overall_total}. Next up!')
                         turn = False
                     else:
-                        # self.players[player].overall_total += self.players[player].turn_total
                         print(f'Ok then player {self.players[player].name}. Your game total is now {self.players[player].overall_total}. That means...')
                         print(f'We have a winner: Player {self.players[player].name}') #refactor to method?            
                         turn = False
